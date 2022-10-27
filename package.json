@@ -2,7 +2,7 @@
 	"name": "@zebra-ui/color",
 	"id": "zebra-color-picker",
 	"displayName": "zebra-color 基于uniapp，可兼容多端的颜色选择器。",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "两种风格可选择，对微信小程序和支付宝小程序做了单独处理，滑动更丝滑。",
 	"keywords": [
 		"zebra-color-picker",
