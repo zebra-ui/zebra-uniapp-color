@@ -12,7 +12,8 @@
 		</view>
 		<!-- #endif -->
 		<!-- #ifndef MP-WEIXIN -->
-		<view class="zebra-alpha-container" @touchmove.stop="handleChange" @touchstart.stop="handleChange">
+		<view class="zebra-alpha-container" @touchmove.stop="handleChange" @touchstart.stop="handleChange"
+			@mousedown="handleMouseDown">
 			<view class="zebra-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
 				<view class="zebra-alpha-picker"></view>
 			</view>
@@ -131,6 +132,18 @@
 						})
 					}
 				}).exec();
+			},
+			handleMouseDown(e) {
+				this.handleChange(e, true)
+				window.addEventListener('mousemove', this.handleChange)
+				window.addEventListener('mouseup', this.handleMouseUp)
+			},
+			handleMouseUp() {
+				this.unbindEventListeners()
+			},
+			unbindEventListeners() {
+				window.removeEventListener('mousemove', this.handleChange)
+				window.removeEventListener('mouseup', this.handleMouseUp)
 			}
 		}
 	}

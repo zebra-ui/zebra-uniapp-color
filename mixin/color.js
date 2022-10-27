@@ -85,7 +85,6 @@ export default {
 						return Number(num.replace('px', ''));
 					}
 				} else if (num.indexOf('%') !== -1) {
-					// 传百分比,则相对于windowHeight,传"10%"则等于windowHeight的10%
 					let rate = Number(num.replace('%', '')) / 100;
 					return uni.getSystemInfoSync().windowHeight * rate;
 				}

@@ -14,7 +14,8 @@
 	<!-- #ifndef MP-WEIXIN -->
 	<view
 		:class="['zebra-hue',direction === 'horizontal'?'zebra-hue--horizontal':'',direction === 'vertical'?'zebra-hue--vertical':'']">
-		<view class="zebra-hue-container" @touchmove.stop="handleChange" @touchstart.stop="handleChange">
+		<view class="zebra-hue-container" @touchmove.stop="handleChange" @touchstart.stop="handleChange"
+			@mousedown="handleMouseDown">
 			<view class="zebra-hue-pointer" :style="{top: pointerTop, left: pointerLeft}" role="presentation">
 				<view class="zebra-hue-picker"></view>
 			</view>
@@ -247,6 +248,18 @@
 						}
 					}
 				}).exec();
+			},
+			handleMouseDown(e) {
+				this.handleChange(e, true)
+				window.addEventListener('mousemove', this.handleChange)
+				window.addEventListener('mouseup', this.handleMouseUp)
+			},
+			handleMouseUp(e) {
+				this.unbindEventListeners()
+			},
+			unbindEventListeners() {
+				window.removeEventListener('mousemove', this.handleChange)
+				window.removeEventListener('mouseup', this.handleMouseUp)
 			}
 		}
 	}

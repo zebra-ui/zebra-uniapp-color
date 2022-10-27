@@ -19,9 +19,19 @@
 		</view>
 	</view>
 	<!-- #endif -->
-	<!-- #ifdef H5 || MP-TOUTIAO || MP-BAIDU || APP-VUE || MP-QQ || MP-KUAISHOU || MP-LARK || MP-JD || MP-360 || QUICKAPP-WEBVIEW || QUICKAPP-WEBVIEW-UNION || QUICKAPP-WEBVIEW-HUAWEI -->
+	<!-- #ifdef MP-TOUTIAO || MP-BAIDU || APP-VUE || MP-QQ || MP-KUAISHOU || MP-LARK || MP-JD || MP-360 || QUICKAPP-WEBVIEW || QUICKAPP-WEBVIEW-UNION || QUICKAPP-WEBVIEW-HUAWEI -->
 	<view class="zebra-saturation" :style="{background: bgColor}" @touchmove.stop.prevent="handleChange"
 		@touchstart="handleChange">
+		<view class="zebra-saturation--white"></view>
+		<view class="zebra-saturation--black"></view>
+		<view class="zebra-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
+			<view class="zebra-saturation-circle"></view>
+		</view>
+	</view>
+	<!-- #endif -->
+	<!-- #ifdef H5 -->
+	<view class="zebra-saturation" :style="{background: bgColor}" @touchmove.stop.prevent="handleChange"
+		@touchstart="handleChange" @mousedown="handleMouseDown">
 		<view class="zebra-saturation--white"></view>
 		<view class="zebra-saturation--black"></view>
 		<view class="zebra-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
@@ -99,6 +109,19 @@
 			onChange(param) {
 				this.$emit('change', param)
 			},
+			handleMouseDown(e) {
+				window.addEventListener('mousemove', this.handleChange)
+				window.addEventListener('mouseup', this.handleChange)
+				window.addEventListener('mouseup', this.handleMouseUp)
+			},
+			handleMouseUp(e) {
+				this.unbindEventListeners()
+			},
+			unbindEventListeners() {
+				window.removeEventListener('mousemove', this.handleChange)
+				window.removeEventListener('mouseup', this.handleChange)
+				window.removeEventListener('mouseup', this.handleMouseUp)
+			}
 		}
 	}
 </script>

@@ -7,7 +7,11 @@
 <p align="center">全端兼容的轻量级颜色选择器。</p>
 
 <p align="center">
-	🔥 <a href="https://swiper.zebraui.com/">zebraSwiper轮播</a>
+	🔥 <a href="https://color.zebraui.com/">zebraColor文档</a>
+</p>
+
+<p align="center">
+	🚀 <a href="https://swiper.zebraui.com/">zebraSwiper轮播</a>
 	&nbsp;
 	&nbsp;
 	🚀 <a href="https://zebraui.com/" target="_blank">zebraUI组件库</a>
@@ -15,25 +19,19 @@
 
 ## 介绍
 
-[zebra-swiper](https://github.com/zebra-ui/zebra-uniapp-swiper) 是基于uniapp开发的一款移动端轮播组件，已实现swiper组件90%的功能。
-
-[uniapp](https://uniapp.dcloud.io/README)的[swiper](https://uniapp.dcloud.io/component/swiper)组件存在很大的局限性，无法完成一些复杂的轮播效果。
-
-而zebra-swiper不仅可以实现一些3D轮播效果，还可以通过参数来定义你想要的效果。
+zebraColor是一款兼容全端的颜色选择器，通常用于自定义颜色的场景。
 
 ## 特性
 
-- 全面对标swiper，并实现全端兼容
-- 兼容多端，小程序也可以实现3D轮播效果
-- 可自定义3D效果
-- 多种示例，总有一种适合你
+- 全端兼容
+- 微信小程序使用`wxs`，支付宝小程序使用`sjs`，滑动选择颜色时丝滑无卡顿。
 
 ## 安装
 
 ### npm方式
 
 ```bash
-npm i @zebra-ui/swiper
+npm i @zebra-ui/color
 ```
 
 ```js
@@ -41,7 +39,7 @@ npm i @zebra-ui/swiper
 
 {
 	"easycom": {
-		"^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
+		"^zebra-(.*)": "@zebra-ui/color/components/zebra-$1/zebra-$1.vue"
 	},
 	"pages": [...],
 	"globalStyle": {...}
@@ -50,24 +48,17 @@ npm i @zebra-ui/swiper
 
 ### uni_modules方式
 
-[插件市场](https://ext.dcloud.net.cn/plugin?id=7273)直接导入即可
+[插件市场](https://ext.dcloud.net.cn)直接导入即可
 
 ## 手机预览
 
 <div>
-	<img alt="wx" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/wx.jpg" width="200" />
-	<img alt="ali" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/ali.jpg" width="200" />
-	<img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/h5.png" width="200" />
+	<img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-color/code.png" style="width:200px;margin-top:20px;"  />
 </div>
 
 ## 预览
 <div style="display:flex;flex-wrap:wrap;margin-top:30px;">
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif1.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif2.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif3.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif4.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif5.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif6.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-color/zebra-color-preview-gif.gif" width="320" style="margin:20px;" />
 </div>
 
 ## 群
