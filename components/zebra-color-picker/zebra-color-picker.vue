@@ -108,7 +108,7 @@
 			},
 			disableFields: {
 				type: Boolean,
-				default: true
+				default: false
 			},
 			width: {
 				type: [String, Number],
