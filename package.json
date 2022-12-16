@@ -2,15 +2,15 @@
 	"name": "@zebra-ui/color",
 	"id": "zebra-color-picker",
 	"displayName": "zebra-color 基于uniapp，可兼容多端的颜色选择器。",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "两种风格可选择，对微信小程序和支付宝小程序做了单独处理，滑动更丝滑。",
 	"keywords": [
-        "zebra-color-picker",
-        "zebra",
-        "颜色选择器",
-        "zebracolor",
-        "zebra-color"
-    ],
+		"zebra-color-picker",
+		"zebra",
+		"颜色选择器",
+		"zebracolor",
+		"zebra-color"
+	],
 	"repository": "https://github.com/zebra-ui/zebra-uniapp-color",
 	"bugs": {
 		"url": "https://github.com/zebra-ui/zebra-uniapp-color/issues"
