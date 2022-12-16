@@ -54,7 +54,11 @@
 	export default {
 		name: 'Saturation',
 		props: {
-			value: Object
+			value: Object,
+			navbarHeight: {
+				type: Number,
+				default: 0
+			}
 		},
 		computed: {
 			colors() {
@@ -82,8 +86,33 @@
 
 					var xOffset = data.left
 					var yOffset = data.top
-					var pageX = e.pageX || (e.touches ? e.touches[0].clientX : 0)
-					var pageY = e.pageY || (e.touches ? e.touches[0].clientY : 0)
+					var pageX = e.clientX || (e.touches ? e.touches[0].clientX : 0)
+					var pageY = e.clientY || (e.touches ? e.touches[0].clientY : 0)
+					var left = clamp(pageX - xOffset, 0, containerWidth)
+					var top = clamp(pageY - yOffset, 0, containerHeight)
+					var saturation = left / containerWidth
+					var bright = clamp(-(top / containerHeight) + 1, 0, 1)
+					this.onChange({
+						h: this.colors.hsv.h,
+						s: saturation,
+						v: bright,
+						a: this.colors.hsv.a,
+						source: 'hsva'
+					})
+				}).exec();
+			},
+			handleChangeMouse(e, skip) {
+				const query = uni.createSelectorQuery().in(this);
+				query.select('.zebra-saturation').boundingClientRect(data => {
+					if (!data) {
+						return
+					}
+					var containerWidth = data.width
+					var containerHeight = data.height
+					var xOffset = data.left + window.pageXOffset
+					var yOffset = data.top + this.navbarHeight + window.pageYOffset
+					var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+					var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
 					var left = clamp(pageX - xOffset, 0, containerWidth)
 					var top = clamp(pageY - yOffset, 0, containerHeight)
 					var saturation = left / containerWidth
@@ -110,17 +139,21 @@
 				this.$emit('change', param)
 			},
 			handleMouseDown(e) {
-				window.addEventListener('mousemove', this.handleChange)
-				window.addEventListener('mouseup', this.handleChange)
-				window.addEventListener('mouseup', this.handleMouseUp)
+				if (navigator.userAgent.indexOf('Mobile') === -1) {
+					window.addEventListener('mousemove', this.handleChangeMouse)
+					window.addEventListener('mouseup', this.handleChangeMouse)
+					window.addEventListener('mouseup', this.handleMouseUp)
+				}
 			},
 			handleMouseUp(e) {
 				this.unbindEventListeners()
 			},
 			unbindEventListeners() {
-				window.removeEventListener('mousemove', this.handleChange)
-				window.removeEventListener('mouseup', this.handleChange)
-				window.removeEventListener('mouseup', this.handleMouseUp)
+				if (navigator.userAgent.indexOf('Mobile') === -1) {
+					window.removeEventListener('mousemove', this.handleChangeMouse)
+					window.removeEventListener('mouseup', this.handleChangeMouse)
+					window.removeEventListener('mouseup', this.handleMouseUp)
+				}
 			}
 		}
 	}

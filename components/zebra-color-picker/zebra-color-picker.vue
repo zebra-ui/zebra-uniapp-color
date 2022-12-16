@@ -2,7 +2,7 @@
 	<view role="application" aria-label="Chrome color picker"
 		:class="['zebra-chrome', disableAlpha ? 'zebra-chrome__disable-alpha' : '']">
 		<view class="zebra-chrome-saturation-wrap">
-			<saturation v-model="colors" @change="childChange"></saturation>
+			<saturation v-model="colors" :navbarHeight="navbarHeight" @change="childChange"></saturation>
 		</view>
 		<view class="zebra-chrome-body">
 			<view class="zebra-chrome-controls">
@@ -113,6 +113,10 @@
 			width: {
 				type: [String, Number],
 				default: ''
+			},
+			navbarHeight: {
+				type: Number,
+				default: 0
 			}
 		},
 		components: {

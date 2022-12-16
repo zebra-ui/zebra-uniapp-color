@@ -2,7 +2,7 @@
 	<div role="application" aria-label="Sketch color picker"
 		:class="['zebra-sketch', disableAlpha ? 'zebra-sketch__disable-alpha' : '']">
 		<div class="zebra-sketch-saturation-wrap">
-			<saturation v-model="colors" @change="childChange"></saturation>
+			<saturation v-model="colors" :navbarHeight="navbarHeight" @change="childChange"></saturation>
 		</div>
 		<div class="zebra-sketch-controls">
 			<div class="zebra-sketch-sliders">
@@ -95,6 +95,10 @@
 			disableFields: {
 				type: Boolean,
 				default: false
+			},
+			navbarHeight: {
+				type: Number,
+				default: 0
 			}
 		},
 		computed: {
