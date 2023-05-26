@@ -42,7 +42,7 @@
 					:value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
 			</div>
 		</div>
-		<div class="zebra-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
+		<div class="zebra-sketch-presets">
 			<template v-for="c in presetColors">
 				<div v-if="!isTransparent(c)" class="zebra-sketch-presets-color" :aria-label="'Color:' + c" :key="c"
 					:style="{background: c}" @click="handlePreset(c)">
@@ -53,6 +53,15 @@
 				</div>
 			</template>
 		</div>
+		<slot name="bottom"></slot>
+		<view class="zebra-sketch-button" v-if="showButton">
+			<button class="button-left" @click="cancel">
+				取消
+			</button>
+			<button class="button-right" type="primary" @click="confirm">
+				确定
+			</button>
+		</view>
 	</div>
 </template>
 
@@ -99,6 +108,10 @@
 			navbarHeight: {
 				type: Number,
 				default: 0
+			},
+			showButton: {
+				type: Boolean,
+				default: false
 			}
 		},
 		computed: {
@@ -138,6 +151,12 @@
 			}
 		},
 		methods: {
+			confirm() {
+				this.$emit("confirm", this.colors)
+			},
+			cancel() {
+				this.$emit("cancel", this.colors)
+			},
 			handlePreset(c) {
 				this.colorChange({
 					hex: c,
@@ -178,7 +197,6 @@
 		box-sizing: initial;
 		background: #fff;
 		border-radius: 8rpx;
-		box-shadow: 0 0 0 2rpx rgba(0, 0, 0, .15), 0 16rpx 32rpx rgba(0, 0, 0, .15);
 	}
 
 	.zebra-sketch-saturation-wrap {
@@ -298,5 +316,27 @@
 
 	.zebra-sketch__disable-alpha .zebra-sketch-color-wrap {
 		height: 20rpx;
+	}
+	
+	.zebra-sketch-button {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 30rpx;
+	}
+	
+	.button-left {
+		margin: 0;
+		font-size: 24rpx;
+		padding: 0 20rpx;
+		line-height: 44rpx;
+	}
+	
+	.button-right {
+		margin: 0;
+		margin-left: 20rpx;
+		font-size: 24rpx;
+		padding: 0 20rpx;
+		line-height: 44rpx;
 	}
 </style>

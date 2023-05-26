@@ -87,6 +87,15 @@
 				</view>
 			</view>
 		</view>
+		<slot name="bottom"></slot>
+		<view class="zebra-chrome-button" v-if="showButton">
+			<button class="button-left" @click="cancel">
+				取消
+			</button>
+			<button class="button-right" type="primary" @click="confirm">
+				确定
+			</button>
+		</view>
 	</view>
 </template>
 
@@ -117,6 +126,10 @@
 			navbarHeight: {
 				type: Number,
 				default: 0
+			},
+			showButton: {
+				type: Boolean,
+				default: false
 			}
 		},
 		components: {
@@ -177,6 +190,12 @@
 			}
 		},
 		methods: {
+			confirm() {
+				this.$emit("confirm", this.colors)
+			},
+			cancel() {
+				this.$emit("cancel", this.colors)
+			},
 			childChange(data) {
 				this.colorChange(data)
 			},
@@ -230,7 +249,6 @@
 	.zebra-chrome {
 		background: #fff;
 		border-radius: 4rpx;
-		box-shadow: 0 0 4rpx rgba(0, 0, 0, .3), 0 8rpx 16rpx rgba(0, 0, 0, .3);
 		box-sizing: initial;
 		width: 450rpx;
 		font-family: Menlo;
@@ -372,5 +390,27 @@
 	.zebra-chrome__disable-alpha .zebra-chrome-hue-wrap {
 		margin-top: 8rpx;
 		margin-bottom: 8rpx;
+	}
+
+	.zebra-chrome-button {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 30rpx;
+	}
+
+	.button-left {
+		margin: 0;
+		font-size: 24rpx;
+		padding: 0 20rpx;
+		line-height: 44rpx;
+	}
+
+	.button-right {
+		margin: 0;
+		margin-left: 20rpx;
+		font-size: 24rpx;
+		padding: 0 20rpx;
+		line-height: 44rpx;
 	}
 </style>
